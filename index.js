@@ -37,5 +37,18 @@ app.post("/movie", (req, res) => {
     res.send("Movie is added to the list!");
 });
 
+//Seach for a movie in the list
+app.get('/movie/:id', (req, res) => {
+    const id = req.params.id
+
+    for (let movie of movies) {
+        if(movie.id === id) {
+            res.json(movie)
+            return
+        }
+    }
+    res.status(404).send('Movie not found')
+})
+
 //set the server to listen at port
 app.listen(port, () => console.log(`Server listening at port ${port}`));
