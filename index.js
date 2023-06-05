@@ -48,7 +48,22 @@ app.get('/movie/:id', (req, res) => {
         }
     }
     res.status(404).send('Movie not found')
-})
+});
+
+//remove movie from the list
+app.delete("/movie/:id", (req, res) => {
+    const id = req.params.id
+    movies = movies.filter(movie => {
+        if(movie.id !== id) {
+            return true;
+        }
+        return false;
+    });
+
+    res.send("Movie is deleted");
+});
+
+
 
 //set the server to listen at port
 app.listen(port, () => console.log(`Server listening at port ${port}`));
